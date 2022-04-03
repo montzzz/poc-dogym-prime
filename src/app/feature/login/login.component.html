@@ -1,0 +1,50 @@
+<div class="container">
+  <div class="p-grid">
+    <div class="login col-3">
+      <p-card styleClass="card">
+        <ng-template pTemplate="header">
+          <div class="card-header">
+            <img style="height: 175px" src="assets/logo.svg" />
+            <h3>Login</h3>
+          </div>
+        </ng-template>
+        <form>
+          <div class="grid p-fluid">
+            <div class="col-12">
+              <div class="p-inputgroup">
+                <span class="p-inputgroup-addon"
+                  ><i class="pi pi-user"></i
+                ></span>
+                <input name="email" type="text" [(ngModel)]="userLogin.email" pInputText placeholder="E-mail" />
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="p-inputgroup">
+                <span class="p-inputgroup-addon"
+                  ><i class="pi pi-key"></i
+                ></span>
+                <input name="password" type="password" [(ngModel)]="userLogin.senha" pInputText placeholder="Password" />
+              </div>
+            </div>
+          </div>
+        </form>
+        <ng-template pTemplate="footer">
+          <div class="grid p-fluid">
+            <div class="col-12">
+              <p-button
+                pRipple
+                type="button"
+                icon="pi pi-sign-in"
+                label="Entrar"
+                styleClass="login_btn"
+                [loading]="loading"
+                iconPos="right"
+                (onClick)="login()"
+              ></p-button>
+            </div>
+          </div>
+        </ng-template>
+      </p-card>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,47 @@
+.gender-male{
+    background-color: #5c85f5;
+    color: #1c11b4;
+    border-radius: 2px;
+    padding: 5px;
+    border-radius: 10px;
+    font-size: 14px;
+    
+}
+
+.gender-female{
+    background-color: #f397f3;
+    color: #c008c0;
+    border-radius: 2px;
+    padding: 5px;
+    border-radius: 10px;
+    font-size: 14px;
+}
+
+.status-inactive{
+    background-color: #f79790;
+    color: #8d1b06;
+    border-radius: 2px;
+    padding: 5px;
+    border-radius: 10px;
+    font-size: 14px;
+}
+
+.status-active{
+    background-color: #80df5b;
+    color: #214d04;
+    border-radius: 2px;
+    padding: 5px;
+    border-radius: 10px;
+    font-size: 14px;
+}
+
+
+:host ::ng-deep .joao {
+    background-color: #2f353a;
+    font-size: small;
+    width: 20%;
+}
+
+.joao {
+    width: 20%;
+}

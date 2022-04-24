@@ -1,20 +1,21 @@
 /* You can add global styles to this file, and also import other style files */
 @import url("https://fonts.googleapis.com/css?family=Numans");
 html {
-  background-image: url("assets/home.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   height: 100%;
   font-family: "Numans", sans-serif;
+  max-height: 100%;
 }
 
 body {
   height: 100%;
   margin: 0;
+  overflow: hidden;
 }
 
 .card {
-  background-color: rgba(0,0,0,0.5) !important;
+  background-color: rgba(0, 0, 0, 0.5) !important;
 }
 
 .login_btn {
@@ -24,4 +25,27 @@ body {
   width: 50% !important;
   font-weight: bold !important;
   font-size: 15px !important;
+}
+
+.menu {
+  height: 100%;
+}
+
+.primary-button {
+  background-color: #2e7d32 !important;
+  border: none !important;
+  background: #2e7d32 !important;
+  color: aliceblue !important;
+}
+
+.secondary-button {
+  color: aliceblue !important;
+  background: #607d8b !important;
+  border: none !important;
+  background-color: #607d8b !important;
+}
+
+.button-confirm-dialog {
+  background-color: #2e7d32 !important;
+  background: #2e7d32 !important;
 }

@@ -8,12 +8,14 @@
       "@env/*" : ["src/environments/*"],
       "@shared/*" : ["src/app/shared/*"],
       "@domain/*" : ["src/app/shared/domain/*"],
-      "@core/*" : ["src/app/core/*"]
+      "@core/*" : ["src/app/core/*"],
+      "@feature/*" : ["src/app/feature/*"]
     },
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "noImplicitOverride": true,
+    "noImplicitAny": false,
     "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
@@ -21,6 +23,7 @@
     "declaration": false,
     "downlevelIteration": true,
     "experimentalDecorators": true,
+    "strictPropertyInitialization": false,
     "moduleResolution": "node",
     "importHelpers": true,
     "target": "es2017",

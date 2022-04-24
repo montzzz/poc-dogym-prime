@@ -1,25 +1,11 @@
-<div *ngIf="authenticationService.isUserAuthenticated()">
-  <div class="p-grid">
-    <div class="test col-12">
-      <p-toolbar>
-        <div class="p-toolbar-group-left">
-          <label><b>DOGYM LOGO?</b></label>
-        </div>
-        <div class="p-toolbar-group-right">
-          <label><b>SAIR?</b></label>
-        </div>
-      </p-toolbar>
-    </div>
-  </div>
-  <div class="p-grid flex flex-row">
-    <div class="col-2">
-      <p-slideMenu [model]="items" backLabel="Voltar"></p-slideMenu>
-    </div>
-    <div class="col-10">
-      <router-outlet></router-outlet>
-    </div>
-  </div>
+<div class="container" *ngIf="authenticationService.isUserAuthenticated()">
+  <p-toast></p-toast>
+  <app-header>
+  </app-header>
+  <app-nav>
+  </app-nav>
 </div>
-<div *ngIf="!authenticationService.isUserAuthenticated()">
-  <router-outlet></router-outlet>
+<div class="image-background" *ngIf="!authenticationService.isUserAuthenticated()">
+  <!--<router-outlet></router-outlet> -->
+  <app-login></app-login>
 </div>

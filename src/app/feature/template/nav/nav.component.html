@@ -1,0 +1,13 @@
+<div class="p-grid flex flex-row" style="height: 100%">
+  <div class="nav col-2">
+    <p-slideMenu
+      [viewportHeight]="500"
+      styleClass="menu"
+      [model]="items"
+      backLabel="Voltar"
+    ></p-slideMenu>
+  </div>
+  <div class="content col-10">
+    <router-outlet></router-outlet>
+  </div>
+</div>

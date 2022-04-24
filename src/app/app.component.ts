@@ -17,24 +17,41 @@ export class AppComponent {
     this.items = [
       {
         label: 'Usuários',
-        icon: 'pi pi-user',
-        items: [
-          { label: 'Novo', icon: 'pi pi-user-plus' },
-          { label: 'Cadastrados', icon: 'pi pi-users' },
-          { label: 'Treinos', icon: 'pi pi-list' }
-        ]
+        icon: 'pi pi-user'
       },
       {
-        label: 'Edit',
-        icon: 'fa-solid fa-dumbbell',
-        items: [
-          { label: 'Undo', icon: 'pi pi-refresh' },
-          { label: 'Redo', icon: 'pi pi-repeat' },
-        ],
+        label: 'Avisos',
+        icon: 'pi pi-send'
       },
+      {
+        label: 'Exercícios',
+        icon: 'fa-solid fa-dumbbell'
+      },
+      {
+        label: 'Treinos',
+        icon: 'pi pi-list'
+      },
+      {
+        label: 'Aulas',
+        icon: 'fa-solid fa-person-chalkboard'
+      },
+      {
+        label: 'Planos',
+        icon: 'pi pi-wallet'
+      },
+      {
+        label: 'Formas de pgto',
+        icon: 'pi pi-credit-card'
+      },
+      {
+        label: 'Receber',
+        icon: 'fa-solid fa-hand-holding-dollar'
+      },
+      {
+        label: 'Pagar',
+        icon: 'pi pi-money-bill'
+      }
     ];
-
-    console.log(this.authenticationService.isUserAuthenticated())
   }
 
 

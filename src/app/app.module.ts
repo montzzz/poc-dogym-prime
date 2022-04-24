@@ -3,24 +3,36 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterModule } from '@angular/router';
 
 import { FeatureModule } from './feature/feature.module';
 import { FeatureRoutingModule } from './feature/feature-routing.module';
 import { SlideMenuModule } from 'primeng/slidemenu';
 import { ToolbarModule } from 'primeng/toolbar';
+import { HeaderComponent } from '@feature/template/header/header.component';
+import { NavComponent } from '@feature/template/nav/nav.component';
+import { OverlayPanelModule } from 'primeng/overlaypanel';
+import { ButtonModule } from 'primeng/button';
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { ToastModule } from 'primeng/toast';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
+    RouterModule,
     FeatureModule,
     FeatureRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
     SlideMenuModule,
     ToolbarModule,
+    OverlayPanelModule,
+    ButtonModule,
+    ToastModule,
   ],
-  providers: [],
+  providers: [ConfirmationService, MessageService, DatePipe],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

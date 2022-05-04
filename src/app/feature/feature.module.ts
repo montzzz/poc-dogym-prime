@@ -12,9 +12,32 @@ import { ListUserComponent } from './user/list-user/list-user.component';
 import { NavComponent } from './template/nav/nav.component';
 import { HeaderComponent } from './template/header/header.component';
 import { UserCreateComponent } from './user/user-create/user-create.component';
+import { CardCreateComponent } from './components/card-create/card-create.component';
+import { DButtonComponent } from './components/d-button/d-button.component';
+import { DInputComponent } from './components/d-input/d-input.component';
+import { DInputmaskComponent } from './components/d-inputmask/d-inputmask.component';
+import { DDateComponent } from './components/d-date/d-date.component';
+import { DDropdownComponent } from './components/d-dropdown/d-dropdown.component';
+import { DDatetimeComponent } from './components/d-datetime/d-datetime.component';
+import { DInputnumberComponent } from './components/d-inputnumber/d-inputnumber.component';
 
 @NgModule({
-  declarations: [LoginComponent, HomeComponent, ListUserComponent, NavComponent, HeaderComponent, UserCreateComponent],
+  declarations: [
+    LoginComponent,
+    HomeComponent,
+    ListUserComponent,
+    NavComponent,
+    HeaderComponent,
+    UserCreateComponent,
+    CardCreateComponent,
+    DButtonComponent,
+    DInputComponent,
+    DInputmaskComponent,
+    DDateComponent,
+    DDropdownComponent,
+    DDatetimeComponent,
+    DInputnumberComponent,
+  ],
   imports: [
     CommonModule,
     RouterModule,
@@ -23,6 +46,6 @@ import { UserCreateComponent } from './user/user-create/user-create.component';
     CoreModule,
     FormsModule,
   ],
-  exports: [LoginComponent, NavComponent, HeaderComponent]
+  exports: [LoginComponent, NavComponent, HeaderComponent],
 })
 export class FeatureModule {}

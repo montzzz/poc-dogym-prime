@@ -38,7 +38,7 @@ import { InputMaskModule } from 'primeng/inputmask';
     DividerModule,
     FormsModule,
     ReactiveFormsModule,
-    InputMaskModule,
+    InputMaskModule
   ],
 })
 export class SharedModule {}

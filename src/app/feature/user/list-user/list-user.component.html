@@ -1,15 +1,13 @@
 <div class="p-grid">
   <div class="col-2 col-offset-10" style="text-align: right">
-    <button
-      pButton
-      pRipple
-      type="button"
+    <d-button
       label="Adicionar"
-      class="p-button-raised primary-button"
+      class="primary"
       icon="pi pi-plus"
       iconPos="right"
-      (click)="navigateToUserCreate()"
-    ></button>
+      type="button"
+      (clickOutput)="navigateToUserCreate()"
+    ></d-button>
   </div>
   <div class="col-12">
     <p-table
@@ -107,15 +105,14 @@
                 ></p-tieredMenu>
               </ng-template>
             </p-overlayPanel>
-            <button
-              pButton
-              type="button"
-              class="p-button-secondary"
+            <d-button
+              class="secondary"
               icon="pi pi-cog"
-              (click)="
+              type="button"
+              (clickOutput)="
                 selectedUser = user; adjustLabelItemAction(); op.toggle($event)
               "
-            ></button>
+            ></d-button>
           </td>
         </tr>
       </ng-template>

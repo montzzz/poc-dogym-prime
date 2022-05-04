@@ -1,0 +1,70 @@
+<p-card
+  header="{{ titleHeader }}"
+  [style]="{ width: '100%' }"
+  styleClass="p-card-shadow"
+>
+  <p-divider></p-divider>
+  <form [formGroup]="formGroup" class="p-fluid grid formgrid">
+    <div *ngFor="let item of itens" class="{{ item.size }} field">
+      <label>{{ item.label }}</label>
+      <d-input
+        *ngIf="item.type == 'text'"
+        type="text"
+        name="{{ item.formName }}"
+      ></d-input>
+      <d-inputmask
+        *ngIf="item.type == 'inputmask'"
+        mask="{{ item.mask }}"
+        name="{{ item.formName }}"
+      ></d-inputmask>
+      <d-date
+        *ngIf="item.type == 'date'"
+        name="{{ item.formName }}"
+        dateFormat="{{ item.dateFormat }}"
+      ></d-date>
+      <d-dropdown
+        *ngIf="item.type == 'dropdown'"
+        [options]="item.options"
+        name="{{ item.formName }}"
+      ></d-dropdown>
+      <d-datetime
+        *ngIf="item.type == 'datetime'"
+        dateFormat="{{ item.dateFormat }}"
+        [showIcon]="true"
+        [readOnlyInput]="true"
+        name="{{ item.formName }}"
+      ></d-datetime>
+      <d-inputnumber
+        *ngIf="item.type == 'inputnumber'"
+        [maxFractionDigits]="item.maxFractionDigits"
+        [minFractionDigits]="item.minFractionDigits"
+        [maxlength]="item.maxlength"
+        name="{{ item.formName }}"
+      >
+      </d-inputnumber>
+    </div>
+  </form>
+  <ng-template pTemplate="footer">
+    <div style="text-align: right">
+      <d-button
+        label="Cancelar"
+        class="secondary"
+        icon="pi pi-times"
+        type="button"
+        (clickOutput)="returnToUserCreate()"
+      >
+      </d-button>
+      <d-button
+        [disabled]="!formGroup.valid"
+        label="Salvar"
+        class="primary"
+        icon="pi pi-check"
+        type="submit"
+        [style]="{ 'margin-left': '.5em' }"
+        (clickOutput)="onSave($event)"
+        (onsubmit)="onSave($event)"
+      >
+      </d-button>
+    </div>
+  </ng-template>
+</p-card>

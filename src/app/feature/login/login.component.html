@@ -8,14 +8,20 @@
             <h3>Login</h3>
           </div>
         </ng-template>
-        <form>
+        <form [formGroup]="formGroup" (ngSubmit)="login()">
           <div class="grid p-fluid">
             <div class="col-12">
               <div class="p-inputgroup">
                 <span class="p-inputgroup-addon"
                   ><i class="pi pi-user"></i
                 ></span>
-                <input name="email" type="text" [(ngModel)]="userLogin.email" pInputText placeholder="E-mail" />
+                <input
+                  name="email"
+                  type="text"
+                  formControlName="email"
+                  pInputText
+                  placeholder="E-mail"
+                />
               </div>
             </div>
             <div class="col-12">
@@ -23,27 +29,33 @@
                 <span class="p-inputgroup-addon"
                   ><i class="pi pi-key"></i
                 ></span>
-                <input name="password" type="password" [(ngModel)]="userLogin.senha" pInputText placeholder="Password" />
+                <input
+                  name="password"
+                  type="password"
+                  formControlName="password"
+                  pInputText
+                  placeholder="Password"
+                />
               </div>
             </div>
           </div>
-        </form>
-        <ng-template pTemplate="footer">
-          <div class="grid p-fluid">
-            <div class="col-12">
-              <p-button
-                pRipple
-                type="button"
-                icon="pi pi-sign-in"
-                label="Entrar"
-                styleClass="login_btn"
-                [loading]="loading"
-                iconPos="right"
-                (onClick)="login()"
-              ></p-button>
+          <footer style="margin-top: 15px">
+            <div class="grid p-fluid">
+              <div class="col-12">
+                <d-button
+                  label="Entrar"
+                  class="primary"
+                  icon="pi pi-sign-in"
+                  iconPos="right"
+                  type="submit"
+                  [loading]="loading"
+                  [disabled]="!formGroup.valid"
+                  inlineStyle="float: right; font-weight: bold; font-size: 15px;color: black; top: 20px"
+                ></d-button>
+              </div>
             </div>
-          </div>
-        </ng-template>
+          </footer>
+        </form>
       </p-card>
     </div>
   </div>

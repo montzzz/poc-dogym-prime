@@ -19,10 +19,19 @@ export class DButtonComponent implements OnInit {
   icon: string = '';
 
   @Input()
+  inlineStyle: string = '';
+
+  @Input()
+  formName: string = '';
+
+  @Input()
   iconPos: any = 'left';
 
   @Input()
   disabled: boolean = false;
+
+  @Input()
+  loading: boolean = false;
 
   @Output()
   public clickOutput = new EventEmitter<MouseEvent>();

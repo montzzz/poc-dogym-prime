@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpService } from 'src/app/core/http/http.service';
 import { AuthenticationService } from '@core/authentication/authentication.service';
 import { Router } from '@angular/router';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { UserLogin } from '@shared/domain/user/user-login.model';
 
@@ -12,6 +13,7 @@ import { UserLogin } from '@shared/domain/user/user-login.model';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
+  formGroup: FormGroup;
   loading: boolean = false;
 
   userLogin: UserLogin = {
@@ -28,10 +30,18 @@ export class LoginComponent implements OnInit {
     
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.formGroup = new FormGroup({
+      email: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', [Validators.required])
+    })
+  }
 
   login() {
     this.loading = true;
+
+    this.userLogin.email = this.formGroup.get('email')?.value
+    this.userLogin.senha = this.formGroup.get('password')?.value
 
     this._httpService.post('/login', this.userLogin).subscribe(
       (response: any) => {

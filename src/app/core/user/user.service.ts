@@ -3,6 +3,7 @@ import { HttpService } from '@core/http/http.service';
 import { LocalStorageService } from '@core/local-storage/local-storage.service';
 import { Observable } from 'rxjs';
 import { User } from '@domain/user/user.model';
+import { Profile } from '@shared/enum/profile';
 
 @Injectable({
   providedIn: 'root',
@@ -19,6 +20,10 @@ export class UserService {
   getUsersPaginated(): Observable<any> {
     let param = {
       gymId: this.gymId,
+      perfis: [
+        Profile.User,
+        Profile.Master
+      ]
     };
 
     return this._httpService.post('/users/paginated', param);

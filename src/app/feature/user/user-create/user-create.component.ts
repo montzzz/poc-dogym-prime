@@ -11,6 +11,7 @@ import { MessageServiceDogym } from '@core/message/message.service';
 import { Router } from '@angular/router';
 import { DateService } from '@core/date/date.service';
 import { CreateService } from '@core/observable/create.service';
+import { LoadingService } from '@core/observable/loading.service';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -20,6 +21,8 @@ import { Subscription } from 'rxjs';
 })
 export class UserCreateComponent implements OnDestroy, OnInit {
   private createEventSubscription: Subscription;
+
+  loading: boolean = false;
 
   genders: Gender[] = [
     { name: 'Masculino', code: 'MALE' },
@@ -53,124 +56,131 @@ export class UserCreateComponent implements OnDestroy, OnInit {
 
   userTemplate = [
     {
-      type: 'text',
-      label: 'Nome',
-      size: 'col-6',
-      value: this.userToUpdate ? this.userToUpdate.nome : '',
-      disabled: false,
-      validators: Validators.required,
-      formName: 'nome',
-    },
-    {
-      type: 'text',
-      label: 'E-mail',
-      size: 'col-6',
-      value: this.userToUpdate ? this.userToUpdate.email : '',
-      disabled: false,
-      validators: [Validators.required, Validators.email],
-      formName: 'email',
-    },
-    {
-      type: 'inputmask',
-      label: 'Telefone',
-      mask: '(99) 99999-9999',
-      size: 'col-2',
-      value: this.userToUpdate ? this.userToUpdate.telefone : '',
-      disabled: false,
-      validators: Validators.required,
-      formName: 'telefone',
-    },
-    {
-      type: 'date',
-      label: 'Nascimento',
-      dateFormat: 'dd/mm/yy',
-      size: 'col-2',
-      value: this.userToUpdate
-        ? new Date(
-            this._dateService.getDateToInsertUpdate(
-              this.userToUpdate.nascimento
-            )
-          )
-        : '',
-      disabled: false,
-      validators: Validators.required,
-      formName: 'nascimento',
-    },
-    {
-      type: 'dropdown',
-      label: 'Sexo',
-      options: this.genders,
-      size: 'col-2',
-      value: this.userToUpdate
-        ? {
-            name:
-              this.userToUpdate.sexo === 'MASCULINO' ? 'Masculino' : 'Feminino',
-            code: this.userToUpdate.sexo === 'MASCULINO' ? 'MALE' : 'FEMALE',
-          }
-        : {
-            name: 'Masculino',
-            code: 'MALE',
-          },
-      disabled: false,
-      validators: Validators.required,
-      formName: 'sexo',
-    },
-    {
-      type: 'dropdown',
-      label: 'Tipo',
-      options: this.userType,
-      size: 'col-2',
-      value: this.userToUpdate
-        ? {
-            name: this.userToUpdate.perfil === 'MASTER' ? 'Professor' : 'Aluno',
-            code: this.userToUpdate.perfil === 'MASTER' ? 'MASTER' : 'USER',
-          }
-        : {
-            name: 'Aluno',
-            code: 'USER',
-          },
-      disabled: false,
-      validators: Validators.required,
-      formName: 'perfil',
-    },
-    {
-      type: 'datetime',
-      label: 'Data e hora de cadastro',
-      dateFormat: 'dd/mm/yy',
-      size: 'col-4',
-      value: this.userToUpdate
-        ? new Date(
-            this._dateService.getDateTimeToInsertUpdate(
-              this.userToUpdate.dataHoraCadastro
-            )
-          )
-        : new Date(),
-      disabled: true,
-      validators: Validators.required,
-      formName: 'dataHoraCadastro',
-    },
-    {
-      type: 'inputnumber',
-      label: 'Altura (CM)',
-      maxFractionDigits: 0,
-      maxlength: 3,
-      size: 'col-1',
-      value: this.userToUpdate ? this.userToUpdate.altura : '',
-      disabled: false,
-      validators: Validators.required,
-      formName: 'altura',
-    },
-    {
-      type: 'inputnumber',
-      label: 'Peso (KG)',
-      minFractionDigits: 2,
-      maxFractionDigits: 2,
-      maxlength: 6,
-      size: 'col-1',
-      value: this.userToUpdate ? this.userToUpdate.peso : '',
-      disabled: false,
-      validators: Validators.required,
-      formName: 'peso',
+      title: 'Principal',
+      fields: [
+        {
+          type: 'text',
+          label: 'Nome',
+          size: 'col-6',
+          value: this.userToUpdate ? this.userToUpdate.nome : '',
+          disabled: false,
+          validators: Validators.required,
+          formName: 'nome',
+        },
+        {
+          type: 'text',
+          label: 'E-mail',
+          size: 'col-6',
+          value: this.userToUpdate ? this.userToUpdate.email : '',
+          disabled: false,
+          validators: [Validators.required, Validators.email],
+          formName: 'email',
+        },
+        {
+          type: 'inputmask',
+          label: 'Telefone',
+          mask: '(99) 99999-9999',
+          size: 'col-2',
+          value: this.userToUpdate ? this.userToUpdate.telefone : '',
+          disabled: false,
+          validators: Validators.required,
+          formName: 'telefone',
+        },
+        {
+          type: 'date',
+          label: 'Nascimento',
+          dateFormat: 'dd/mm/yy',
+          size: 'col-2',
+          value: this.userToUpdate
+            ? new Date(
+                this._dateService.getDateToList(this.userToUpdate.nascimento)
+              )
+            : '',
+          disabled: false,
+          validators: Validators.required,
+          formName: 'nascimento',
+        },
+        {
+          type: 'dropdown',
+          label: 'Sexo',
+          options: this.genders,
+          size: 'col-2',
+          value: this.userToUpdate
+            ? {
+                name:
+                  this.userToUpdate.sexo === 'MASCULINO'
+                    ? 'Masculino'
+                    : 'Feminino',
+                code:
+                  this.userToUpdate.sexo === 'MASCULINO' ? 'MALE' : 'FEMALE',
+              }
+            : {
+                name: 'Masculino',
+                code: 'MALE',
+              },
+          disabled: false,
+          validators: Validators.required,
+          formName: 'sexo',
+        },
+        {
+          type: 'dropdown',
+          label: 'Tipo',
+          options: this.userType,
+          size: 'col-2',
+          value: this.userToUpdate
+            ? {
+                name:
+                  this.userToUpdate.perfil === 'MASTER' ? 'Professor' : 'Aluno',
+                code: this.userToUpdate.perfil === 'MASTER' ? 'MASTER' : 'USER',
+              }
+            : {
+                name: 'Aluno',
+                code: 'USER',
+              },
+          disabled: false,
+          validators: Validators.required,
+          formName: 'perfil',
+        },
+        {
+          type: 'datetime',
+          label: 'Data e hora de cadastro',
+          dateFormat: 'dd/mm/yy',
+          size: 'col-4',
+          value: this.userToUpdate
+            ? new Date(
+                this._dateService.getDateTimeToInsertUpdate(
+                  this.userToUpdate.dataHoraCadastro
+                )
+              )
+            : new Date(),
+          disabled: true,
+          validators: Validators.required,
+          formName: 'dataHoraCadastro',
+        },
+        {
+          type: 'inputnumber',
+          label: 'Altura (CM)',
+          maxFractionDigits: 0,
+          maxlength: 3,
+          size: 'col-1',
+          value: this.userToUpdate ? this.userToUpdate.altura : '',
+          disabled: false,
+          validators: Validators.required,
+          formName: 'altura',
+        },
+        {
+          type: 'inputnumber',
+          label: 'Peso (KG)',
+          minFractionDigits: 2,
+          maxFractionDigits: 2,
+          maxlength: 6,
+          size: 'col-1',
+          value: this.userToUpdate ? this.userToUpdate.peso : '',
+          disabled: false,
+          validators: Validators.required,
+          formName: 'peso',
+        },
+      ],
     },
   ];
 
@@ -180,6 +190,7 @@ export class UserCreateComponent implements OnDestroy, OnInit {
     private _router: Router,
     private _dateService: DateService,
     private _createService: CreateService,
+    private _loadingService: LoadingService,
     private _datePipe: DatePipe
   ) {
     this.createEventSubscription = this._createService
@@ -192,6 +203,8 @@ export class UserCreateComponent implements OnDestroy, OnInit {
   ngOnInit(): void {}
 
   save(userForm) {
+    this._loadingService.setObservable(true);
+
     this.userInserting.id = this.inserting ? undefined : this.userToUpdate.id;
     this.userInserting.nome = userForm.get('nome').value;
     this.userInserting.altura = userForm.get('altura').value;
@@ -223,6 +236,8 @@ export class UserCreateComponent implements OnDestroy, OnInit {
             ? 'Aluno cadastrado com sucesso'
             : 'Aluno alterado com sucesso'
         );
+
+        this._loadingService.setObservable(false);
 
         this.returnToUserCreate();
       });

@@ -4,46 +4,52 @@
   styleClass="p-card-shadow"
 >
   <p-divider></p-divider>
-  <form [formGroup]="formGroup" class="p-fluid grid formgrid">
-    <div *ngFor="let item of itens" class="{{ item.size }} field">
-      <label>{{ item.label }}</label>
-      <d-input
-        *ngIf="item.type == 'text'"
-        type="text"
-        name="{{ item.formName }}"
-      ></d-input>
-      <d-inputmask
-        *ngIf="item.type == 'inputmask'"
-        mask="{{ item.mask }}"
-        name="{{ item.formName }}"
-      ></d-inputmask>
-      <d-date
-        *ngIf="item.type == 'date'"
-        name="{{ item.formName }}"
-        dateFormat="{{ item.dateFormat }}"
-      ></d-date>
-      <d-dropdown
-        *ngIf="item.type == 'dropdown'"
-        [options]="item.options"
-        name="{{ item.formName }}"
-      ></d-dropdown>
-      <d-datetime
-        *ngIf="item.type == 'datetime'"
-        dateFormat="{{ item.dateFormat }}"
-        [showIcon]="true"
-        [readOnlyInput]="true"
-        name="{{ item.formName }}"
-      ></d-datetime>
-      <d-inputnumber
-        *ngIf="item.type == 'inputnumber'"
-        [maxFractionDigits]="item.maxFractionDigits"
-        [minFractionDigits]="item.minFractionDigits"
-        [maxlength]="item.maxlength"
-        name="{{ item.formName }}"
-      >
-      </d-inputnumber>
-    </div>
-  </form>
+  <p-tabView>
+    <p-tabPanel header="{{ item.title }}" *ngFor="let item of items; let i = index" [selected]="i == 0">
+      <form [formGroup]="formGroup" class="p-fluid grid formgrid">
+        <div *ngFor="let field of item.fields; let i = index" class="{{ field.size }} field">
+          <label>{{ field.label }}</label>
+          <d-input
+            *ngIf="field.type == 'text'"
+            type="text"
+            name="{{ field.formName }}"
+            id="fdp"
+          ></d-input>
+          <d-inputmask
+            *ngIf="field.type == 'inputmask'"
+            mask="{{ field.mask }}"
+            name="{{ field.formName }}"
+          ></d-inputmask>
+          <d-date
+            *ngIf="field.type == 'date'"
+            name="{{ field.formName }}"
+            dateFormat="{{ field.dateFormat }}"
+          ></d-date>
+          <d-dropdown
+            *ngIf="field.type == 'dropdown'"
+            [options]="field.options"
+            name="{{ field.formName }}"
+          ></d-dropdown>
+          <d-datetime
+            *ngIf="field.type == 'datetime'"
+            dateFormat="{{ field.dateFormat }}"
+            [showIcon]="true"
+            [readOnlyInput]="true"
+            name="{{ field.formName }}"
+          ></d-datetime>
+          <d-inputnumber
+            *ngIf="field.type == 'inputnumber'"
+            [maxFractionDigits]="field.maxFractionDigits"
+            [minFractionDigits]="field.minFractionDigits"
+            [maxlength]="field.maxlength"
+            name="{{ field.formName }}"
+          >
+          </d-inputnumber>
+        </div>
+      </form>
+    </p-tabPanel>
+  </p-tabView>
+
   <ng-template pTemplate="footer">
     <div style="text-align: right">
       <d-button
@@ -55,7 +61,7 @@
       >
       </d-button>
       <d-button
-        [disabled]="!formGroup.valid"
+        [disabled]="false"
         label="Salvar"
         class="primary"
         icon="pi pi-check"
@@ -63,6 +69,7 @@
         [style]="{ 'margin-left': '.5em' }"
         (clickOutput)="onSave($event)"
         (onsubmit)="onSave($event)"
+        [loading]="loading"
       >
       </d-button>
     </div>

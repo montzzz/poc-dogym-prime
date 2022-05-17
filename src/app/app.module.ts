@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 
@@ -16,6 +16,7 @@ import { ButtonModule } from 'primeng/button';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { DatePipe } from '@angular/common';
+import { ErrorInterceptor } from '@core/interceptors/error.interceptor';
 
 @NgModule({
   declarations: [AppComponent],
@@ -32,7 +33,16 @@ import { DatePipe } from '@angular/common';
     ButtonModule,
     ToastModule,
   ],
-  providers: [ConfirmationService, MessageService, DatePipe],
+  providers: [
+    ConfirmationService,
+    MessageService,
+    DatePipe,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

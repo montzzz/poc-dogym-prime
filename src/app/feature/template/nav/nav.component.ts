@@ -26,6 +26,7 @@ export class NavComponent implements OnInit {
       {
         label: 'Avisos',
         icon: 'pi pi-send',
+        routerLink: ['/notification'],
       },
       {
         label: 'Exercícios',

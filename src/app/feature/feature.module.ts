@@ -20,6 +20,8 @@ import { DDateComponent } from './components/d-date/d-date.component';
 import { DDropdownComponent } from './components/d-dropdown/d-dropdown.component';
 import { DDatetimeComponent } from './components/d-datetime/d-datetime.component';
 import { DInputnumberComponent } from './components/d-inputnumber/d-inputnumber.component';
+import { ListNotificationComponent } from './notification/list-notification/list-notification.component';
+import { NotificationCreateComponent } from './notification/notification-create/notification-create.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +39,8 @@ import { DInputnumberComponent } from './components/d-inputnumber/d-inputnumber.
     DDropdownComponent,
     DDatetimeComponent,
     DInputnumberComponent,
+    ListNotificationComponent,
+    NotificationCreateComponent,
   ],
   imports: [
     CommonModule,

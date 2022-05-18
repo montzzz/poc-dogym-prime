@@ -9,7 +9,6 @@ import { MenuItem, ConfirmationService } from 'primeng/api';
 
 import { MessageServiceDogym } from '@core/message/message.service';
 import { Router } from '@angular/router';
-import { state } from '@angular/animations';
 
 @Component({
   selector: 'app-list-user',
@@ -84,7 +83,7 @@ export class ListUserComponent implements OnInit {
                       this._messageService.addMessage(
                         'success',
                         'Confirmação',
-                        'Alterado o status do aluno com sucesso'
+                        'Alterado o status do aviso com sucesso'
                       );
                     });
                 });

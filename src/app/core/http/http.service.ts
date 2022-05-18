@@ -16,7 +16,7 @@ export class HttpService {
     this.url = environment.apiPath;
   }
 
-  /* GENERATE THE HEADER HTTP REQUEST */ 
+  /* GENERATE THE HTTP REQUEST HEADER*/ 
   getHttpHeaders(): HttpHeaders{
     this.aUser = this.localStorageService.get('dogymUser')
     return new HttpHeaders({
